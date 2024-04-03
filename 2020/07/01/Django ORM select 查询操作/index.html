@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="waymingz">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="基本操作1234567891011# 获取所有数据，对应SQL：select * from UserUser.objects.all()# 匹配，对应SQL：select * from User where name &#x3D; &amp;#x27;Uzi&amp;#x27;User.objects.filter(name&#x3D;&amp;#x27;Uzi&amp;#x27;)# 不匹配，对应SQL：select * from User">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django ORM select 查询操作">
+<meta property="og:url" content="https://waym1ng.github.io/2020/07/01/Django%20ORM%20select%20%E6%9F%A5%E8%AF%A2%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="MingMing&#39;blog">
+<meta property="og:description" content="基本操作1234567891011# 获取所有数据，对应SQL：select * from UserUser.objects.all()# 匹配，对应SQL：select * from User where name &#x3D; &amp;#x27;Uzi&amp;#x27;User.objects.filter(name&#x3D;&amp;#x27;Uzi&amp;#x27;)# 不匹配，对应SQL：select * from User">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-01T08:03:25.000Z">
+<meta property="article:modified_time" content="2024-03-27T12:19:28.327Z">
+<meta property="article:author" content="waymingz">
+<meta property="article:tag" content="orm python">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Django ORM select 查询操作 - MingMing&#39;blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"waym1ng.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"QaAc8EraW3qDuc3hldMvmw5p-gzGzoHsz","app_key":"oTgXIx2IwXcYJAPXLGPAdYJC","server_url":"https://qaac8era.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>明明的博客呀</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Django ORM select 查询操作"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-07-01 16:03" pubdate>
+          2020年7月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          53 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Django ORM select 查询操作</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 获取所有数据，对应SQL：select * from User</span><br>User.objects.<span class="hljs-built_in">all</span>()<br><br><span class="hljs-comment"># 匹配，对应SQL：select * from User where name = &#x27;Uzi&#x27;</span><br>User.objects.<span class="hljs-built_in">filter</span>(name=<span class="hljs-string">&#x27;Uzi&#x27;</span>)<br><br><span class="hljs-comment"># 不匹配，对应SQL：select * from User where name != &#x27;Uzi&#x27;</span><br>User.objects.exclude(name=<span class="hljs-string">&#x27;Uzi&#x27;</span>)<br><br><span class="hljs-comment"># 获取单条数据（有且仅有一条，id唯一），对应SQL：select * from User where id = 724</span><br>User.objects.get(<span class="hljs-built_in">id</span>=<span class="hljs-number">123</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h2><p> </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 获取总数，对应SQL：select count(1) from User</span><br>User.objects.count()<br>User.objects.<span class="hljs-built_in">filter</span>(name=<span class="hljs-string">&#x27;Uzi&#x27;</span>).count()<br><br><span class="hljs-comment"># 比较，gt:&gt;，gte:&gt;=，lt:&lt;，lte:&lt;=,对应SQL：select * from User where id &gt; 724</span><br>User.objects.<span class="hljs-built_in">filter</span>(id__gt=<span class="hljs-number">724</span>)<br>User.objects.<span class="hljs-built_in">filter</span>(id__gt=<span class="hljs-number">1</span>, id__lt=<span class="hljs-number">10</span>)<br><br><span class="hljs-comment"># 包含，in，对应SQL：select * from User where id in (11,22,33)</span><br>User.objects.<span class="hljs-built_in">filter</span>(id__in=[<span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>])<br>User.objects.exclude(id__in=[<span class="hljs-number">11</span>, <span class="hljs-number">22</span>, <span class="hljs-number">33</span>])<br><br><span class="hljs-comment"># isnull：isnull=True为空，isnull=False不为空，对应SQL：select * from User where pub_date is null</span><br>User.objects.<span class="hljs-built_in">filter</span>(pub_date__isnull=<span class="hljs-literal">True</span>)<br><br><span class="hljs-comment"># like，contains大小写敏感，icontains大小写不敏感，相同用法的还有startswith、endswith</span><br>User.objects.<span class="hljs-built_in">filter</span>(name__contains=<span class="hljs-string">&quot;sre&quot;</span>)<br>User.objects.exclude(name__contains=<span class="hljs-string">&quot;sre&quot;</span>)<br><br><span class="hljs-comment"># 范围，between and，对应SQL：select * from User where id between 3 and 8</span><br>User.objects.<span class="hljs-built_in">filter</span>(id__range=[<span class="hljs-number">3</span>, <span class="hljs-number">8</span>])<br><br><span class="hljs-comment"># 排序，order by，&#x27;id&#x27;按id正序，&#x27;-id&#x27;按id倒叙</span><br>User.objects.<span class="hljs-built_in">filter</span>(name=<span class="hljs-string">&#x27;Uzi&#x27;</span>).order_by(<span class="hljs-string">&#x27;id&#x27;</span>)<br>User.objects.<span class="hljs-built_in">filter</span>(name=<span class="hljs-string">&#x27;Uzi&#x27;</span>).order_by(<span class="hljs-string">&#x27;-id&#x27;</span>)<br><br><span class="hljs-comment"># 多级排序，order by，先按name进行正序排列，如果name一致则再按照id倒叙排列</span><br>User.objects.<span class="hljs-built_in">filter</span>(name=<span class="hljs-string">&#x27;Uzi&#x27;</span>).order_by(<span class="hljs-string">&#x27;name&#x27;</span>,<span class="hljs-string">&#x27;-id&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="进阶操作"><a href="#进阶操作" class="headerlink" title="进阶操作"></a>进阶操作</h2><p> </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># limit，对应SQL：select * from User limit 3;</span><br>User.objects.<span class="hljs-built_in">all</span>()[:<span class="hljs-number">3</span>]<br><br><span class="hljs-comment"># limit，取第三条以后的数据，没有对应的SQL，类似的如：select * from User limit 3,10000000，从第3条开始取数据，取10000000条（10000000大于表中数据条数）</span><br>User.objects.<span class="hljs-built_in">all</span>()[<span class="hljs-number">3</span>:]<br><br><span class="hljs-comment"># offset，取出结果的第10-20条数据（不包含10，包含20）,也没有对应SQL，参考上边的SQL写法</span><br>User.objects.<span class="hljs-built_in">all</span>()[<span class="hljs-number">10</span>:<span class="hljs-number">20</span>]<br><br><span class="hljs-comment"># 分组，group by，对应SQL：select username,count(1) from User group by username;</span><br><span class="hljs-keyword">from</span> django.db.models <span class="hljs-keyword">import</span> Count<br>User.objects.values_list(<span class="hljs-string">&#x27;username&#x27;</span>).annotate(Count(<span class="hljs-string">&#x27;id&#x27;</span>))<br><br><span class="hljs-comment"># 去重distinct，对应SQL：select distinct(username) from User</span><br>User.objects.values(<span class="hljs-string">&#x27;username&#x27;</span>).distinct().count()<br><br><span class="hljs-comment"># filter多列、查询多列，对应SQL：select username,fullname from accounts_user</span><br>User.objects.values_list(<span class="hljs-string">&#x27;username&#x27;</span>, <span class="hljs-string">&#x27;fullname&#x27;</span>)<br><br><span class="hljs-comment"># filter单列、查询单列，正常values_list给出的结果是个列表，里边里边的每条数据对应一个元组，当只查询一列时，可以使用flat标签去掉元组，将每条数据的结果以字符串的形式存储在列表中，从而避免解析元组的麻烦</span><br>User.objects.values_list(<span class="hljs-string">&#x27;username&#x27;</span>, flat=<span class="hljs-literal">True</span>)<br><br><span class="hljs-comment"># int字段取最大值、最小值、综合、平均数</span><br><span class="hljs-keyword">from</span> django.db.models <span class="hljs-keyword">import</span> Sum,Count,Max,Min,Avg<br><br>User.objects.aggregate(Count(‘<span class="hljs-built_in">id</span>’))<br>User.objects.aggregate(Sum(‘age’))<br></code></pre></td></tr></table></figure>
+
+<h2 id="时间字段"><a href="#时间字段" class="headerlink" title="时间字段"></a>时间字段</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 匹配日期，date</span><br>User.objects.<span class="hljs-built_in">filter</span>(create_time__date=datetime.date(<span class="hljs-number">2018</span>, <span class="hljs-number">8</span>, <span class="hljs-number">1</span>))<br>User.objects.<span class="hljs-built_in">filter</span>(create_time__date__gt=datetime.date(<span class="hljs-number">2018</span>, <span class="hljs-number">8</span>, <span class="hljs-number">2</span>))<br><br><span class="hljs-comment"># 匹配年，year，相同用法的还有匹配月month，匹配日day，匹配周week_day，匹配时hour，匹配分minute，匹配秒second</span><br>User.objects.<span class="hljs-built_in">filter</span>(create_time__year=<span class="hljs-number">2018</span>)<br>User.objects.<span class="hljs-built_in">filter</span>(create_time__year__gte=<span class="hljs-number">2018</span>)<br><br><span class="hljs-comment"># 按天统计归档</span><br>today = datetime.date.today()<br>select = &#123;<span class="hljs-string">&#x27;day&#x27;</span>: connection.ops.date_trunc_sql(<span class="hljs-string">&#x27;day&#x27;</span>, <span class="hljs-string">&#x27;create_time&#x27;</span>)&#125;<br>deploy_date_count = Task.objects.<span class="hljs-built_in">filter</span>(<br>    create_time__range=(today - datetime.timedelta(days=<span class="hljs-number">7</span>), today)<br>).extra(select=select).values(<span class="hljs-string">&#x27;day&#x27;</span>).annotate(number=Count(<span class="hljs-string">&#x27;id&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<h2 id="Q-的使用"><a href="#Q-的使用" class="headerlink" title="Q 的使用"></a>Q 的使用</h2><p><strong>Q对象可以对关键字参数进行封装，从而更好的应用多个查询，可以组合&amp;(and)、|(or)、~(not)操作符。</strong></p>
+<p>例如下边的语句  
+ </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.db.models <span class="hljs-keyword">import</span> Q<br><br>User.objects.<span class="hljs-built_in">filter</span>(<br>    Q(role__startswith=<span class="hljs-string">&#x27;sre_&#x27;</span>),<br>    Q(name=<span class="hljs-string">&#x27;公众号&#x27;</span>) | Q(name=<span class="hljs-string">&#x27;Uzi&#x27;</span>)<br>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">转换成SQL语句如下：<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">from</span> <span class="hljs-keyword">User</span> <span class="hljs-keyword">where</span> role <span class="hljs-keyword">like</span> <span class="hljs-string">&#x27;sre_%&#x27;</span> <span class="hljs-keyword">and</span> (name<span class="hljs-operator">=</span><span class="hljs-string">&#x27;公众号&#x27;</span> <span class="hljs-keyword">or</span> name<span class="hljs-operator">=</span><span class="hljs-string">&#x27;Uzi&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html">通常更多的时候我们用Q来做搜索逻辑，比如前台搜索框输入一个字符，后台去数据库中检索标题或内容中是否包含<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python">_s = request.GET.get(<span class="hljs-string">&#x27;search&#x27;</span>)<br><br>_t = Blog.objects.<span class="hljs-built_in">all</span>()<br><span class="hljs-keyword">if</span> _s:<br>    _t = _t.<span class="hljs-built_in">filter</span>(<br>        Q(title__icontains=_s) |<br>        Q(content__icontains=_s)<br>    )<br><br><span class="hljs-keyword">return</span> _t<br>外键：ForeignKey<br>表结构：<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Role</span>(models.Model):<br>    name = models.CharField(max_length=<span class="hljs-number">16</span>, unique=<span class="hljs-literal">True</span>)<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span>(models.Model):<br>    username = models.EmailField(max_length=<span class="hljs-number">255</span>, unique=<span class="hljs-literal">True</span>)<br>    role = models.ForeignKey(Role, on_delete=models.CASCADE)<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><code class="hljs python">正向查询:<br><span class="hljs-comment"># 查询用户的角色名</span><br>_t = User.objects.get(username=<span class="hljs-string">&#x27;Uzi&#x27;</span>)<br>_t.role.name<br>反向查询：<br><span class="hljs-comment"># 查询角色下包含的所有用户</span><br>_t = Role.objects.get(name=<span class="hljs-string">&#x27;Role03&#x27;</span>)<br>_t.user_set.<span class="hljs-built_in">all</span>()<br>另一种反向查询的方法：<br>_t = Role.objects.get(name=<span class="hljs-string">&#x27;Role03&#x27;</span>)<br><br><span class="hljs-comment"># 这种方法比上一种_set的方法查询速度要快</span><br>User.objects.<span class="hljs-built_in">filter</span>(role=_t)<br>第三种反向查询的方法：<br>如果外键字段有related_name属性，例如models如下：<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span>(models.Model):<br>    username = models.EmailField(max_length=<span class="hljs-number">255</span>, unique=<span class="hljs-literal">True</span>)<br>    role = models.ForeignKey(Role, on_delete=models.CASCADE,related_name=<span class="hljs-string">&#x27;roleUsers&#x27;</span>)<br>那么可以直接用related_name属性取到某角色的所有用户<br><br>_t = Role.objects.get(name = <span class="hljs-string">&#x27;Role03&#x27;</span>)<br>_t.roleUsers.<span class="hljs-built_in">all</span>()<br>M2M：ManyToManyField<br>表结构：<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Group</span>(models.Model):<br>    name = models.CharField(max_length=<span class="hljs-number">16</span>, unique=<span class="hljs-literal">True</span>)<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span>(models.Model):<br>    username = models.CharField(max_length=<span class="hljs-number">255</span>, unique=<span class="hljs-literal">True</span>)<br>    groups = models.ManyToManyField(Group, related_name=<span class="hljs-string">&#x27;groupUsers&#x27;</span>)<br>正向查询:<br><span class="hljs-comment"># 查询用户隶属组</span><br>_t = User.objects.get(username = <span class="hljs-string">&#x27;Uzi&#x27;</span>)<br>_t.groups.<span class="hljs-built_in">all</span>()<br>反向查询：<br><span class="hljs-comment"># 查询组包含用户</span><br>_t = Group.objects.get(name = <span class="hljs-string">&#x27;groupC&#x27;</span>)<br>_t.user_set.<span class="hljs-built_in">all</span>()<br>同样M2M字段如果有related_name属性，那么可以直接用下边的方式反查<br><br>_t = Group.objects.get(name = <span class="hljs-string">&#x27;groupC&#x27;</span>)<br>_t.groupUsers.<span class="hljs-built_in">all</span>()<br>get_object_or_404<br>正常如果我们要去数据库里搜索某一条数据时，通常使用下边的方法：<br><br>_t = User.objects.get(<span class="hljs-built_in">id</span>=<span class="hljs-number">734</span>)<br><br>但当<span class="hljs-built_in">id</span>=<span class="hljs-number">724</span>的数据不存在时，程序将会抛出一个错误<br><br>abcer.models.DoesNotExist: User matching query does <span class="hljs-keyword">not</span> exist.<br><br>为了程序兼容和异常判断，我们可以使用下边两种方式:<br><br>方式一：get改为<span class="hljs-built_in">filter</span><br>_t = User.objects.<span class="hljs-built_in">filter</span>(<span class="hljs-built_in">id</span>=<span class="hljs-number">724</span>)<br><span class="hljs-comment"># 取出_t之后再去判断_t是否存在</span><br>方式二：使用get_object_or_404<br><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> get_object_or_404<br><br>_t = get_object_or_404(User, <span class="hljs-built_in">id</span>=<span class="hljs-number">724</span>)<br><span class="hljs-comment"># get_object_or_404方法，它会先调用django的get方法，如果查询的对象不存在的话，则抛出一个Http404的异常</span><br>实现方法类似于下边这样：<br><br><span class="hljs-keyword">from</span> django.http <span class="hljs-keyword">import</span> Http404<br><br><span class="hljs-keyword">try</span>:<br>    _t = User.objects.get(<span class="hljs-built_in">id</span>=<span class="hljs-number">724</span>)<br><span class="hljs-keyword">except</span> User.DoesNotExist:<br>    <span class="hljs-keyword">raise</span> Http404<br>get_or_create<br>顾名思义，查找一个对象如果不存在则创建，如下：<br><br><span class="hljs-built_in">object</span>, created = User.objects.get_or_create(username=<span class="hljs-string">&#x27;Uzi&#x27;</span>)<br>返回一个由<span class="hljs-built_in">object</span>和created组成的元组，其中<span class="hljs-built_in">object</span>就是一个查询到的或者是被创建的对象，created是一个表示是否创建了新对象的布尔值<br><br>实现方式类似于下边这样：<br><br><span class="hljs-keyword">try</span>:<br>    <span class="hljs-built_in">object</span> = User.objects.get(username=<span class="hljs-string">&#x27;Uzi&#x27;</span>)<br><br>    created = <span class="hljs-literal">False</span><br>exception User.DoesNoExist:<br>    <span class="hljs-built_in">object</span> = User(username=<span class="hljs-string">&#x27;Uzi&#x27;</span>)<br>    <span class="hljs-built_in">object</span>.save()<br><br>    created = <span class="hljs-literal">True</span><br><br>returen <span class="hljs-built_in">object</span>, created<br><br>执行原生SQL<br>Django中能用ORM的就用它ORM吧，不建议执行原生SQL，可能会有一些安全问题，如果实在是SQL太复杂ORM实现不了，那就看看下边执行原生SQL的方法，跟直接使用pymysql基本一致了<br><br><span class="hljs-keyword">from</span> django.db <span class="hljs-keyword">import</span> connection<br><br><span class="hljs-keyword">with</span> connection.cursor() <span class="hljs-keyword">as</span> cursor:<br>    cursor.execute(<span class="hljs-string">&#x27;select * from accounts_User&#x27;</span>)<br>    row = cursor.fetchall()<br><br><span class="hljs-keyword">return</span> row<br><br>注意这里表名字要用app名+下划线+model名的方式<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Django/" class="category-chain-item">Django</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/orm-python/">#orm python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Django ORM select 查询操作</div>
+      <div>https://waym1ng.github.io/2020/07/01/Django ORM select 查询操作/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>waymingz</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年7月1日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/07/01/Django%20ORM%20%E6%9B%B4%E6%96%B0!%E4%BF%AE%E6%94%B9%E6%93%8D%E4%BD%9C/" title="Django ORM 更新/修改操作">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Django ORM 更新/修改操作</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/06/23/python%20epoll%20socket%E5%AE%9E%E4%BE%8B/" title="python epoll socket实例">
+                        <span class="hidden-mobile">python epoll socket实例</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"QaAc8EraW3qDuc3hldMvmw5p-gzGzoHsz","appKey":"oTgXIx2IwXcYJAPXLGPAdYJC","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

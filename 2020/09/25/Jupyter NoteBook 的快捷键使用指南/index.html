@@ -1,0 +1,1086 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="waymingz">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Jupyter NoteBook 的快捷键使用指南  Jupyter Notebook 有两种键盘输入模式。即命令模式和编辑模式，这与 Vim 有些类似。在编辑模式下，可以往单元中键入代码或文本，此时单元格被绿色的框线包围，且命令模式下的快捷键不生效。在命令模式下，可以用快捷键命令运行单元格，移动单元格，切换单元格编辑状态等等，此时的单元格被灰色的框线包围，且编辑模式下的快捷键不生效。 从命令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jupyter NoteBook 的快捷键使用指南">
+<meta property="og:url" content="https://waym1ng.github.io/2020/09/25/Jupyter%20NoteBook%20%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="MingMing&#39;blog">
+<meta property="og:description" content="Jupyter NoteBook 的快捷键使用指南  Jupyter Notebook 有两种键盘输入模式。即命令模式和编辑模式，这与 Vim 有些类似。在编辑模式下，可以往单元中键入代码或文本，此时单元格被绿色的框线包围，且命令模式下的快捷键不生效。在命令模式下，可以用快捷键命令运行单元格，移动单元格，切换单元格编辑状态等等，此时的单元格被灰色的框线包围，且编辑模式下的快捷键不生效。 从命令">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-09-25T09:22:50.000Z">
+<meta property="article:modified_time" content="2024-03-27T12:19:28.333Z">
+<meta property="article:author" content="waymingz">
+<meta property="article:tag" content="python markdown">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Jupyter NoteBook 的快捷键使用指南 - MingMing&#39;blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"waym1ng.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"QaAc8EraW3qDuc3hldMvmw5p-gzGzoHsz","app_key":"oTgXIx2IwXcYJAPXLGPAdYJC","server_url":"https://qaac8era.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>明明的博客呀</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Jupyter NoteBook 的快捷键使用指南"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-09-25 17:22" pubdate>
+          2020年9月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Jupyter NoteBook 的快捷键使用指南</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1 id="Jupyter-NoteBook-的快捷键使用指南"><a href="#Jupyter-NoteBook-的快捷键使用指南" class="headerlink" title="Jupyter NoteBook 的快捷键使用指南"></a>Jupyter NoteBook 的快捷键使用指南</h1><p> </p>
+<p>Jupyter Notebook 有两种键盘输入模式。即命令模式和编辑模式，这与 <a target="_blank" rel="noopener" href="http://www.vim.org/">Vim</a> 有些类似。在编辑模式下，可以往单元中键入代码或文本，此时单元格被绿色的框线包围，且命令模式下的快捷键不生效。在命令模式下，可以用快捷键命令运行单元格，移动单元格，切换单元格编辑状态等等，此时的单元格被灰色的框线包围，且编辑模式下的快捷键不生效。</p>
+<p>从命令模式进入编辑模式需按 <code>Enter</code> 键，从编辑模式切换到命令模式需按 <code>Esc</code> 键。</p>
+<p>以下两表分别是对命令和编辑两种模式下快捷键的简单说明：</p>
+<p> </p>
+<h3 id="命令模式快捷键（按-Esc-键开启）"><a href="#命令模式快捷键（按-Esc-键开启）" class="headerlink" title="命令模式快捷键（按 Esc 键开启）:"></a>命令模式快捷键（按 Esc 键开启）:</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Enter</td>
+<td>转入编辑模式</td>
+<td></td>
+</tr>
+<tr>
+<td>Shift-Enter</td>
+<td>运行本单元，选中下个单元</td>
+<td>新单元默认为命令模式</td>
+</tr>
+<tr>
+<td>Ctrl-Enter</td>
+<td>运行本单元</td>
+<td></td>
+</tr>
+<tr>
+<td>Alt-Enter</td>
+<td>运行本单元，在其下插入新单元</td>
+<td>新单元默认为编辑模式</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>单元转入代码状态</td>
+<td></td>
+</tr>
+<tr>
+<td>M</td>
+<td>单元转入 markdown 状态</td>
+<td></td>
+</tr>
+<tr>
+<td>R</td>
+<td>单元转入 raw 状态</td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>设定 1 级标题</td>
+<td>仅在 markdown 状态下时建议使用标题相关快捷键，如果单元处于其他状态，则会强制切换到 markdown 状态</td>
+</tr>
+<tr>
+<td>2</td>
+<td>设定 2 级标题</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>设定 3 级标题</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td>设定 4 级标题</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td>设定 5 级标题</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td>设定 6 级标题</td>
+<td></td>
+</tr>
+<tr>
+<td>Up</td>
+<td>选中上方单元</td>
+<td></td>
+</tr>
+<tr>
+<td>K</td>
+<td>选中上方单元</td>
+<td></td>
+</tr>
+<tr>
+<td>Down</td>
+<td>选中下方单元</td>
+<td></td>
+</tr>
+<tr>
+<td>J</td>
+<td>选中下方单元</td>
+<td></td>
+</tr>
+<tr>
+<td>Shift-K</td>
+<td>连续选择上方单元</td>
+<td></td>
+</tr>
+<tr>
+<td>Shift-J</td>
+<td>连续选择下方单元</td>
+<td></td>
+</tr>
+<tr>
+<td>A</td>
+<td>在上方插入新单元</td>
+<td></td>
+</tr>
+<tr>
+<td>B</td>
+<td>在下方插入新单元</td>
+<td></td>
+</tr>
+<tr>
+<td>X</td>
+<td>剪切选中的单元</td>
+<td></td>
+</tr>
+<tr>
+<td>C</td>
+<td>复制选中的单元</td>
+<td></td>
+</tr>
+<tr>
+<td>Shift-V</td>
+<td>粘贴到上方单元</td>
+<td></td>
+</tr>
+<tr>
+<td>V</td>
+<td>粘贴到下方单元</td>
+<td></td>
+</tr>
+<tr>
+<td>Z</td>
+<td>恢复删除的最后一个单元</td>
+<td></td>
+</tr>
+<tr>
+<td>D,D</td>
+<td>删除选中的单元</td>
+<td>连续按两个 D 键</td>
+</tr>
+<tr>
+<td>Shift-M</td>
+<td>合并选中的单元</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-S</td>
+<td>保存当前 NoteBook</td>
+<td></td>
+</tr>
+<tr>
+<td>S</td>
+<td>保存当前 NoteBook</td>
+<td></td>
+</tr>
+<tr>
+<td>L</td>
+<td>开关行号</td>
+<td>编辑框的行号是可以开启和关闭的</td>
+</tr>
+<tr>
+<td>O</td>
+<td>转换输出</td>
+<td></td>
+</tr>
+<tr>
+<td>Shift-O</td>
+<td>转换输出滚动</td>
+<td></td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>关闭页面</td>
+<td></td>
+</tr>
+<tr>
+<td>Q</td>
+<td>关闭页面</td>
+<td></td>
+</tr>
+<tr>
+<td>H</td>
+<td>显示快捷键帮助</td>
+<td></td>
+</tr>
+<tr>
+<td>I,I</td>
+<td>中断 NoteBook 内核</td>
+<td></td>
+</tr>
+<tr>
+<td>0,0</td>
+<td>重启 NoteBook 内核</td>
+<td></td>
+</tr>
+<tr>
+<td>Shift</td>
+<td>忽略</td>
+<td></td>
+</tr>
+<tr>
+<td>Shift-Space</td>
+<td>向上滚动</td>
+<td></td>
+</tr>
+<tr>
+<td>Space</td>
+<td>向下滚动</td>
+<td></td>
+</tr>
+</tbody></table>
+<p> </p>
+<h3 id="编辑模式快捷键（-按-Enter-键启动）"><a href="#编辑模式快捷键（-按-Enter-键启动）" class="headerlink" title="编辑模式快捷键（ 按 Enter 键启动）:"></a>编辑模式快捷键（ 按 Enter 键启动）:</h3><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>作用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Tab</td>
+<td>代码补全或缩进</td>
+<td></td>
+</tr>
+<tr>
+<td>Shift-Tab</td>
+<td>提示</td>
+<td>输出帮助信息，部分函数、类、方法等会显示其定义原型，如果在其后加 <code>?</code> 再运行会显示更加详细的帮助</td>
+</tr>
+<tr>
+<td>Ctrl-]</td>
+<td>缩进</td>
+<td>向右缩进</td>
+</tr>
+<tr>
+<td>Ctrl-[</td>
+<td>解除缩进</td>
+<td>向左缩进</td>
+</tr>
+<tr>
+<td>Ctrl-A</td>
+<td>全选</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-Z</td>
+<td>撤销</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-Shift-Z</td>
+<td>重做</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-Y</td>
+<td>重做</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-Home</td>
+<td>跳到单元开头</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-Up</td>
+<td>跳到单元开头</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-End</td>
+<td>跳到单元末尾</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-Down</td>
+<td>跳到单元末尾</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-Left</td>
+<td>跳到左边一个字首</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-Right</td>
+<td>跳到右边一个字首</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-Backspace</td>
+<td>删除前面一个字</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-Delete</td>
+<td>删除后面一个字</td>
+<td></td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>切换到命令模式</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-M</td>
+<td>切换到命令模式</td>
+<td></td>
+</tr>
+<tr>
+<td>Shift-Enter</td>
+<td>运行本单元，选中下一单元</td>
+<td>新单元默认为命令模式</td>
+</tr>
+<tr>
+<td>Ctrl-Enter</td>
+<td>运行本单元</td>
+<td></td>
+</tr>
+<tr>
+<td>Alt-Enter</td>
+<td>运行本单元，在下面插入一单元</td>
+<td>新单元默认为编辑模式</td>
+</tr>
+<tr>
+<td>Ctrl-Shift–</td>
+<td>分割单元</td>
+<td>按光标所在行进行分割</td>
+</tr>
+<tr>
+<td>Ctrl-Shift-Subtract</td>
+<td>分割单元</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-S</td>
+<td>保存当前 NoteBook</td>
+<td></td>
+</tr>
+<tr>
+<td>Shift</td>
+<td>忽略</td>
+<td></td>
+</tr>
+<tr>
+<td>Up</td>
+<td>光标上移或转入上一单元</td>
+<td></td>
+</tr>
+<tr>
+<td>Down</td>
+<td>光标下移或转入下一单元</td>
+<td></td>
+</tr>
+<tr>
+<td>Ctrl-&#x2F;</td>
+<td>注释整行&#x2F;撤销注释</td>
+<td>仅代码状态有效</td>
+</tr>
+</tbody></table>
+<p><strong>注：</strong> 如果快捷键被系统中的其它应用占用，则可能会失效</p>
+<p><strong>来源：</strong> <a target="_blank" rel="noopener" href="https://opus.konghy.cn/ipynb/jupyter-notebook-keyboard-shortcut.html">https://opus.konghy.cn/ipynb/jupyter-notebook-keyboard-shortcut.html</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/python%E5%8A%A0%E6%B2%B9%E9%B8%AD/" class="category-chain-item">python加油鸭</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python-markdown/">#python markdown</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Jupyter NoteBook 的快捷键使用指南</div>
+      <div>https://waym1ng.github.io/2020/09/25/Jupyter NoteBook 的快捷键使用指南/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>waymingz</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年9月25日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/12/14/Dockerfile%20%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5(Dockerfile%E6%8C%87%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%BB%BA%E8%AE%AE)/" title="Dockerfile 最佳实践(Dockerfile指令的使用及建议)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Dockerfile 最佳实践(Dockerfile指令的使用及建议)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/08/25/PyMySQL%20%E8%AF%A6%E8%A7%A3/" title="PyMySQL 详解">
+                        <span class="hidden-mobile">PyMySQL 详解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"QaAc8EraW3qDuc3hldMvmw5p-gzGzoHsz","appKey":"oTgXIx2IwXcYJAPXLGPAdYJC","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

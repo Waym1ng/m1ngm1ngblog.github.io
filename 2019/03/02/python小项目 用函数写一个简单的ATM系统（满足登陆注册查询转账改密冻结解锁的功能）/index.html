@@ -1,0 +1,716 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/logo.png">
+  <link rel="icon" href="/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="waymingz">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="简单的ATM系统使用函数调用的方法，适合初学者学习参考 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python小项目 用函数写一个简单的ATM系统（满足登陆注册查询转账改密冻结解锁的功能）">
+<meta property="og:url" content="https://waym1ng.github.io/2019/03/02/python%E5%B0%8F%E9%A1%B9%E7%9B%AE%20%E7%94%A8%E5%87%BD%E6%95%B0%E5%86%99%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84ATM%E7%B3%BB%E7%BB%9F%EF%BC%88%E6%BB%A1%E8%B6%B3%E7%99%BB%E9%99%86%E6%B3%A8%E5%86%8C%E6%9F%A5%E8%AF%A2%E8%BD%AC%E8%B4%A6%E6%94%B9%E5%AF%86%E5%86%BB%E7%BB%93%E8%A7%A3%E9%94%81%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%89/index.html">
+<meta property="og:site_name" content="MingMing&#39;blog">
+<meta property="og:description" content="简单的ATM系统使用函数调用的方法，适合初学者学习参考 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-03-02T03:50:33.000Z">
+<meta property="article:modified_time" content="2024-03-27T12:19:28.358Z">
+<meta property="article:author" content="waymingz">
+<meta property="article:tag" content="python函数 python基础 python小练习">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>python小项目 用函数写一个简单的ATM系统（满足登陆注册查询转账改密冻结解锁的功能） - MingMing&#39;blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"waym1ng.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"QaAc8EraW3qDuc3hldMvmw5p-gzGzoHsz","app_key":"oTgXIx2IwXcYJAPXLGPAdYJC","server_url":"https://qaac8era.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>明明的博客呀</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="python小项目 用函数写一个简单的ATM系统（满足登陆注册查询转账改密冻结解锁的功能）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2019-03-02 11:50" pubdate>
+          2019年3月2日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          41 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">python小项目 用函数写一个简单的ATM系统（满足登陆注册查询转账改密冻结解锁的功能）</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1 id="简单的ATM系统"><a href="#简单的ATM系统" class="headerlink" title="简单的ATM系统"></a>简单的ATM系统</h1><p>使用函数调用的方法，适合初学者学习参考</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br></pre></td><td class="code"><pre><code class="hljs routeros">import random<br><br><span class="hljs-attribute">display</span>=<span class="hljs-string">&#x27;&#x27;</span><span class="hljs-string">&#x27;</span><br><span class="hljs-string">**********************</span><br><span class="hljs-string">*                    *</span><br><span class="hljs-string">*  welcome to bank   *</span><br><span class="hljs-string">*                    *</span><br><span class="hljs-string">**********************</span><br><span class="hljs-string">&#x27;</span><span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-attribute">display2</span>=<span class="hljs-string">&#x27;&#x27;</span><span class="hljs-string">&#x27;</span><br><span class="hljs-string">**********************</span><br><span class="hljs-string">*  1.登陆   2.开户    *</span><br><span class="hljs-string">*  3.查询   4.取款    *</span><br><span class="hljs-string">*  5.存款   6.退出    *</span><br><span class="hljs-string">*  7.转账   8.改密    *</span><br><span class="hljs-string">*  9.锁卡   0.解锁   *</span><br><span class="hljs-string">**********************</span><br><span class="hljs-string">&#x27;</span><span class="hljs-string">&#x27;&#x27;</span><br>def getkamun(userdict):<br>    userlist = list(userdict)<br>    kanum = userdict.keys()<br>    <span class="hljs-keyword">while</span> 1:<br>        kalist =[]<br>        <span class="hljs-keyword">while</span> len(kalist)&lt;3:<br>            i = random.randrange(10)<br>            <span class="hljs-keyword">if</span> str(i) <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> kalist:<br>                kalist.append(str(i))<br>        <span class="hljs-attribute">kanum</span>=<span class="hljs-string">&quot;&quot;</span>.join(kalist)<br>        <span class="hljs-keyword">if</span> kanum <span class="hljs-keyword">in</span> userlist:<br>            continue<br>        <span class="hljs-keyword">else</span>:<br>            break<br>    return kanum<br><br>def register(userdict):<br>    idcard =input(<span class="hljs-string">&quot;身份证号：&quot;</span>)<br>    name = input(<span class="hljs-string">&quot;用户名：&quot;</span>)<br>    phone =input(<span class="hljs-string">&quot;电话号码：&quot;</span>)<br>    <span class="hljs-attribute">money</span>=int(input(&quot;预存款：&quot;))<br>    <span class="hljs-keyword">while</span> 1:<br>        psd1 =input(<span class="hljs-string">&quot;密码：&quot;</span>)<br>        psd2 =input(<span class="hljs-string">&quot;确认密码：&quot;</span>)<br>        <span class="hljs-keyword">if</span> <span class="hljs-attribute">psd1</span>==psd2:<br>            <span class="hljs-attribute">psd</span>=psd2<br>            break<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;密码不一致，重新输入&quot;</span>)<br>    <span class="hljs-attribute">kanum</span>=getkamun(userdict)<br>   <span class="hljs-built_in"> user </span>=&#123;<span class="hljs-string">&#x27;idcard&#x27;</span>:idcard,<span class="hljs-string">&#x27;name&#x27;</span>:name,<span class="hljs-string">&#x27;phone&#x27;</span>:phone,<span class="hljs-string">&#x27;money&#x27;</span>:money,<span class="hljs-string">&#x27;psd&#x27;</span>:psd,<span class="hljs-string">&#x27;kanum&#x27;</span>:kanum,<span class="hljs-string">&#x27;suo&#x27;</span>:False&#125;<br>    return<span class="hljs-built_in"> user</span><br><span class="hljs-built_in"></span><br>def login(userdict):<br>    usernum = input(<span class="hljs-string">&quot;请输入卡号：&quot;</span>)<br>   <span class="hljs-built_in"> user </span>=userdict.<span class="hljs-built_in">get</span>(usernum)<br>    <span class="hljs-keyword">if</span> <span class="hljs-attribute">user</span>==None:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;卡号不存在&quot;</span>)<br>        return<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-keyword">if</span> user[<span class="hljs-string">&#x27;suo&#x27;</span>]:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;已锁定，请解锁后登陆&quot;</span>)<br>            return<br>        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(4):<br>            psd = input(<span class="hljs-string">&quot;请输入密码：&quot;</span>)<br>            <span class="hljs-keyword">if</span> usernum ==user.<span class="hljs-built_in">get</span>(<span class="hljs-string">&#x27;kanum&#x27;</span>) <span class="hljs-keyword">and</span> psd ==user.<span class="hljs-built_in">get</span>(<span class="hljs-string">&#x27;psd&#x27;</span>):<br>                <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;登陆成功&quot;</span>)<br>                return user.<span class="hljs-built_in">get</span>(<span class="hljs-string">&#x27;kanum&#x27;</span>)<br>            <span class="hljs-keyword">else</span>:<br>                <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;登陆失败,还有%d次机会&quot;</span>%i)<br>                continue<br>        <span class="hljs-keyword">else</span>:<br>            user[<span class="hljs-string">&#x27;suo&#x27;</span>]=<span class="hljs-literal">True</span><br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;登陆次数超过三次,已锁定&quot;</span>)<br><br>def refer(kanum):<br>   <span class="hljs-built_in"> user </span>= userdict.<span class="hljs-built_in">get</span>(kanum)<br>    money = user[<span class="hljs-string">&#x27;money&#x27;</span>]<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;当前余额为%d&quot;</span>%money)<br>    return None<br><br>def fund(kanum):<br>   <span class="hljs-built_in"> user </span>= userdict.<span class="hljs-built_in">get</span>(kanum)<br>    <span class="hljs-attribute">money</span>=user[<span class="hljs-string">&#x27;money&#x27;</span>]<br>    money += eval(input(<span class="hljs-string">&quot;输入金额&quot;</span>))<br>    user[<span class="hljs-string">&#x27;money&#x27;</span>]=money<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;成功！当前余额为%d&quot;</span> % money)<br>    return None<br><br>def draw(kanum):<br>   <span class="hljs-built_in"> user </span>= userdict.<span class="hljs-built_in">get</span>(kanum)<br>    <span class="hljs-attribute">money</span>=user[<span class="hljs-string">&#x27;money&#x27;</span>]<br>    <span class="hljs-keyword">while</span> 1:<br>        money -= eval(input(<span class="hljs-string">&quot;输入金额&quot;</span>))<br>        <span class="hljs-keyword">if</span> money&gt;=0:<br>            user[<span class="hljs-string">&#x27;money&#x27;</span>]=money<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;成功！当前余额为%d&quot;</span>%money)<br>            break<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;输入大于余额，重新输入&quot;</span>)<br>            break<br>    return None<br><br>def tran(kanum,userdict):<br>   <span class="hljs-built_in"> user </span>= userdict[kanum]<br>    <span class="hljs-built_in">print</span>(user)<br>    obj = input(<span class="hljs-string">&quot;请输入卡号：&quot;</span>)<br>    <span class="hljs-keyword">if</span> obj <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> userdict:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;卡号不存在&quot;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        money2 = int(input(<span class="hljs-string">&quot;请输入转账金额：&quot;</span>))<br>        <span class="hljs-keyword">if</span> money2&lt;user[<span class="hljs-string">&#x27;money&#x27;</span>]:<br>            user[<span class="hljs-string">&#x27;money&#x27;</span>] -= money2<br>            userdict.<span class="hljs-built_in">get</span>(obj)[<span class="hljs-string">&#x27;money&#x27;</span>] +=money2<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;转账成功，余额为%d&quot;</span>%user[<span class="hljs-string">&#x27;money&#x27;</span>])<br>            return<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;余额不足&quot;</span>)<br><br>def changepsd(kanum,userdict):<br>   <span class="hljs-built_in"> user </span>= userdict[kanum]<br>    oldpsd = input(<span class="hljs-string">&quot;请输入当前密码：&quot;</span>)<br>    <span class="hljs-keyword">if</span> oldpsd == user[<span class="hljs-string">&#x27;psd&#x27;</span>]:<br>        newpsd = input(<span class="hljs-string">&quot;请输入新密码：&quot;</span>)<br>        user[<span class="hljs-string">&#x27;psd&#x27;</span>] = newpsd<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;修改成功&quot;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;密码错误&quot;</span>)<br><br>def lock(kanum,userdict):<br>    kanum = input(<span class="hljs-string">&quot;请输入您的卡号：&quot;</span>)<br>    <span class="hljs-keyword">if</span> kanum <span class="hljs-keyword">in</span> userdict:<br>        idcard = input(<span class="hljs-string">&quot;请输入身份证号码：&quot;</span>)<br>        name = input(<span class="hljs-string">&quot;请输入姓名：&quot;</span>)<br>        phone = input(<span class="hljs-string">&quot;请输入电话：&quot;</span>)<br>       <span class="hljs-built_in"> user </span>= userdict[kanum]<br>        <span class="hljs-keyword">if</span> <span class="hljs-attribute">idcard</span>==user[<span class="hljs-string">&#x27;idcard&#x27;</span>] <span class="hljs-keyword">and</span> <span class="hljs-attribute">name</span>==user[<span class="hljs-string">&#x27;name&#x27;</span>] <span class="hljs-keyword">and</span> <span class="hljs-attribute">phone</span>==user[<span class="hljs-string">&#x27;phone&#x27;</span>]:<br>            user[<span class="hljs-string">&#x27;suo&#x27;</span>]=<span class="hljs-literal">True</span><br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;锁定成功&quot;</span>)<br>            return<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;信息有误&quot;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;卡号不存在&quot;</span>)<br>        return<br><br>def unlock(userdict):<br>    kanum = input(<span class="hljs-string">&quot;请输入卡号：&quot;</span>)<br>    <span class="hljs-keyword">if</span> kanum <span class="hljs-keyword">in</span> userdict:<br>        idcard = input(<span class="hljs-string">&quot;请输入身份证：&quot;</span>)<br>        name = input(<span class="hljs-string">&quot;请输入姓名：&quot;</span>)<br>        phone = input(<span class="hljs-string">&quot;请输入电话：&quot;</span>)<br>       <span class="hljs-built_in"> user </span>= userdict[kanum]<br>        <span class="hljs-keyword">if</span> <span class="hljs-attribute">idcard</span>==user[<span class="hljs-string">&#x27;idcard&#x27;</span>] <span class="hljs-keyword">and</span> <span class="hljs-attribute">name</span>==user[<span class="hljs-string">&#x27;name&#x27;</span>] <span class="hljs-keyword">and</span> <span class="hljs-attribute">phone</span>==user[<span class="hljs-string">&#x27;phone&#x27;</span>]:<br>            user[<span class="hljs-string">&#x27;suo&#x27;</span>]=<span class="hljs-literal">False</span><br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;解锁成功&quot;</span>)<br>            return<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;信息有误&quot;</span>)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;卡号不存在&quot;</span>)<br>        return<br><br>def welcome():<br>    <span class="hljs-built_in">print</span>(display)<br><br>welcome()<br>userdict=&#123;&#125;<br>login_state = None<br>money =0<br>n = 0<br><span class="hljs-keyword">while</span> 1:<br>    <span class="hljs-built_in">print</span>(display2)<br>    n =input(<span class="hljs-string">&quot;用户选择要操作：&quot;</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-attribute">n</span>==&#x27;1&#x27;:<br>        login_state = login(userdict)<br>        <span class="hljs-built_in">print</span>(userdict)<br>    elif <span class="hljs-attribute">n</span>==&#x27;2&#x27;:<br>        <span class="hljs-attribute">user</span>=register(userdict)<br>        <span class="hljs-attribute">kanum</span>=user.get(&#x27;kanum&#x27;)<br>        userdict[kanum]=user<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;卡号为：%s&#x27;</span>%kanum)<br>    elif <span class="hljs-attribute">n</span>==&#x27;3&#x27;:<br>        <span class="hljs-built_in">print</span>(userdict)<br>        <span class="hljs-keyword">if</span> login_state:<br>            refer(login_state)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;请先登陆&quot;</span>)<br>    elif <span class="hljs-attribute">n</span>==&#x27;4&#x27;:<br>        <span class="hljs-keyword">if</span> login_state:<br>            draw(login_state)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;请先登陆&quot;</span>)<br>    elif <span class="hljs-attribute">n</span>==&#x27;5&#x27;:<br>        <span class="hljs-keyword">if</span> login_state:<br>            fund(login_state)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;请先登陆&quot;</span>)<br>    elif <span class="hljs-attribute">n</span>==&#x27;6&#x27;:<br>        login_state = None<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;退出登陆&#x27;</span>)<br>    elif <span class="hljs-attribute">n</span>==&#x27;7&#x27;:<br>        <span class="hljs-keyword">if</span> login_state:<br>            tran(login_state, userdict)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;请先登陆&quot;</span>)<br>    elif <span class="hljs-attribute">n</span>==&#x27;8&#x27;:<br>        <span class="hljs-keyword">if</span> login_state:<br>            changepsd(login_state, userdict)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;请先登陆&quot;</span>)<br>    elif <span class="hljs-attribute">n</span>==&#x27;9&#x27;:<br>        <span class="hljs-attribute">n</span>=lock(login_state, userdict)<br>    elif <span class="hljs-attribute">n</span>==&#x27;0&#x27;:<br>        unlock(userdict)<br>    <span class="hljs-keyword">else</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;输入有误，退出系统&quot;</span>)<br>        break<br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/python%E5%8A%A0%E6%B2%B9%E9%B8%AD/" class="category-chain-item">python加油鸭</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python%E5%87%BD%E6%95%B0-python%E5%9F%BA%E7%A1%80-python%E5%B0%8F%E7%BB%83%E4%B9%A0/">#python函数 python基础 python小练习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>python小项目 用函数写一个简单的ATM系统（满足登陆注册查询转账改密冻结解锁的功能）</div>
+      <div>https://waym1ng.github.io/2019/03/02/python小项目 用函数写一个简单的ATM系统（满足登陆注册查询转账改密冻结解锁的功能）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>waymingz</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2019年3月2日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/03/08/python%20%E7%AE%80%E5%8D%95%E7%9A%84%E9%9F%B3%E4%B9%90%E6%92%AD%E6%94%BE%E5%99%A8(%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E6%80%9D%E6%83%B3%E5%86%99%E7%9A%84)/" title="python 简单的音乐播放器(面向对象思想写的)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">python 简单的音乐播放器(面向对象思想写的)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2019/03/02/%E7%94%A8python%20%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4(%E5%B9%B4-%E6%9C%88-%E6%97%A5%20%E6%97%B6!%E5%88%86!%E7%A7%92)%EF%BC%8C%E5%B9%B6%E4%B8%94%E8%BF%94%E5%9B%9E%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4%E7%9A%84%E4%B8%8B%E4%B8%80%E7%A7%92/" title="用python 获取当前时间(年-月-日 时:分:秒)，并且返回当前时间的下一秒">
+                        <span class="hidden-mobile">用python 获取当前时间(年-月-日 时:分:秒)，并且返回当前时间的下一秒</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"QaAc8EraW3qDuc3hldMvmw5p-gzGzoHsz","appKey":"oTgXIx2IwXcYJAPXLGPAdYJC","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      京ICP证123456号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=12345678"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading.gif" lazyload alt="police-icon"/>
+          
+          <span>京公网安备12345678号</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
